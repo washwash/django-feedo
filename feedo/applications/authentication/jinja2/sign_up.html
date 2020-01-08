@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Welcome! RSS Feedo</title>
+  </head>
+  <body>
+    <div>
+      Sign up now!
+      <form action="{{ reverse('authentication:sign_up') }}" method="post">
+        {{ csrf_input }}
+        {{ form }}
+        <input type="submit" value="Sign Up">
+      </form>
+    </div>
+  </body>
+</html>

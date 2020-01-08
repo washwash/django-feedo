@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div>
+  Feed - {{ object.feed.source }}
+  <a href="{{ reverse('subscription:subscription_update_feed_view', kwargs={'pk': object.pk}) }}">
+    Update feed
+  </a>
+  <a href="{{ reverse('subscription:subscription_delete_view', kwargs={'pk': object.pk}) }}">
+    Delete
+  </a>
+  <div>
+    {% for post in object.posts.all() %}
+      {% include 'include/post_preview.html' %}
+    {% endfor %}
+  </div>
+</div>
+
+<a href="{{ reverse('subscription:subscription_create_view') }}">Add Subscription</a>
+{% endblock body %}

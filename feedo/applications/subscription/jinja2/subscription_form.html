@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block body %}
+Add Subscription
+<form action="{{ reverse('subscription:subscription_create_view') }}" method="post">
+  {{ csrf_input }}
+  {{ form.source }}
+  {% if form.errors %}
+    {{ form.errors }}
+  {% endif %}
+  <input type="submit" value="Add">
+</form>
+
+{% endblock body %}

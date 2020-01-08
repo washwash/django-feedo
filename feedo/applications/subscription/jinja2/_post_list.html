@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div>
+  <a href="{{ reverse('subscription:post_list_view') }}">All</a>
+  <a href="{{ reverse('subscription:post_list_new_view') }}">New</a>
+  <a href="{{ reverse('subscription:post_favourites_view') }}">Favourites</a>
+</div>
+<div>
+  {% if object_list %}
+    {% for post in object_list %}
+      {% include 'include/post_preview.html' %}
+      <a href="{{ reverse('subscription:subscription_detail_view', kwargs={'pk': post.subscription.pk}) }}">{{ post.subscription.feed.source }}</a>
+    {% endfor %}
+  {% else %}
+    Wow, such empty!
+  {% endif %}
+
+  {% include 'include/pagination.html' %}
+</div>
+
+{% endblock body %}

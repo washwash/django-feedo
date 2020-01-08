@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div>
+  <a href="{{ reverse('subscription:subscription_detail_view', kwargs={'pk': object.subscription.pk}) }}">
+    {{ object.subscription.feed.source }}
+  </a>
+  <div>
+    {{ post.item.title|safe }}
+    {{ post.item.description|safe }}
+    {{ post.item.published_at.strftime('%Y-%m-%d %H:%M') }}
+    <a href="{{ post.item.link }}">Read Source</a>
+
+    <form action="{{ reverse('subscription:post_update_view', kwargs={'pk': post.pk}) }}" method="post">
+      {{ csrf_input }}
+      {{ form }}
+      <input type="submit" value="Submit">
+    </form>
+
+  </div>
+</div>
+
+{% endblock body %}

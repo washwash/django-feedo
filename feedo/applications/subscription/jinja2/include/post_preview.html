@@ -1,0 +1,7 @@
+<p>
+  <a href="{{ reverse('subscription:post_detail_view', kwargs={'pk': post.pk}) }}">{{ post.item.title }}</a>
+  {{ localtime(post.item.published_at).strftime('%Y-%m-%d %H:%M') }}
+  {% if not post.is_read %}
+  New!
+  {% endif %}
+</p>

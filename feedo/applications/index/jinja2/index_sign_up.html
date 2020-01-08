@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Welcome! RSS Feedo</title>
+  </head>
+  <body>
+    Welcome to RSS Feedo!
+    <div>
+      Have an account? Sign in!
+      <form action="{{ reverse('authentication:sign_in') }}" method="post">
+          {{ csrf_input }}
+          <input type="text" name="username" title="Username">
+          <input type="password" name="password" title="Password">
+          <input type="submit" value="Sign In">
+      </form>
+    </div>
+
+    <div>
+      Sign up now!
+      <form action="{{ reverse('authentication:sign_up') }}" method="post">
+        {{ csrf_input }}
+        <input type="text" name="username" title="Username">
+        <input type="password" name="password1" title="Password">
+        <input type="password" name="password2" title="Password confirmation">
+        <input type="submit" value="Sign Up">
+      </form>
+    </div>
+  </body>
+</html>

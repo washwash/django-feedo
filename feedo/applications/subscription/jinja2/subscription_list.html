@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div>
+  {% if object_list %}
+    Subs
+    {% for sub in object_list %}
+      <div>
+      <a href="{{ reverse('subscription:subscription_detail_view', kwargs={'pk': sub.pk}) }}">{{ sub.feed.source }}</a>
+      <a href="{{ reverse('subscription:subscription_delete_view', kwargs={'pk': sub.pk}) }}">Delete</a>
+
+      {% for post in sub.posts.all()[:3] %}
+        {% include 'include/post_preview.html' %}
+      {% endfor %}
+      {% with count=unread_count(request.user, sub) %}
+        {% if count %}({{count}} new){% endif %}
+      {% endwith %}
+      </div>
+    {% endfor %}
+  {% else %}
+    Wow, such empty!
+  {% endif %}
+</div>
+
+<a href="{{ reverse('subscription:subscription_create_view') }}">Add Subscription</a>
+{% endblock body %}

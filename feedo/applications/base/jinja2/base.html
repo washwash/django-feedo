@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>RSS Feedo</title>
+  </head>
+  <body>
+  {% block header %}
+    <div>
+      <a href="{{ reverse('index:index') }}">
+        Read
+        {% with count=unread_count(request.user) %}
+          {% if count %}({{count}} new){% endif %}
+        {% endwith %}
+      </a>
+      <a href="{{ reverse('subscription:subscription_list_view') }}">Subscriptions</a>
+      <a href="{{ reverse('authentication:sign_out') }}">Sign out</a>
+    </div>
+  {% endblock header %}
+
+  {% block body %}
+  {% endblock body %}
+
+  </body>
+</html>

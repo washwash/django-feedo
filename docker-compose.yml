@@ -8,7 +8,7 @@ services:
     env_file: .env
 
   application:
-    image: feedo:latest
+    image: feedo
     build: ./feedo
     env_file: .env
     entrypoint: /install_resources/start.sh
@@ -20,7 +20,7 @@ services:
       - db
 
   nginx:
-    image: nginx:latest
+    image: nginx
     env_file: .env
     networks:
       feedo-network:
@@ -30,6 +30,26 @@ services:
       - 80:80
     volumes:
       - ./feedo/install_resources/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+
+  rabbit:
+    image: rabbitmq:3-management
+    networks:
+      feedo-network:
+        aliases:
+          - rabbit
+    env_file: .env
+    ports:
+      - 5672:5672
+      - 15672:15672
+
+  celery:
+    image: feedo:latest
+    networks:
+      feedo-network:
+    env_file: .env
+    entrypoint: /install_resources/celery.sh
+    depends_on:
+      - rabbit
 
 volumes:
   db_volume:

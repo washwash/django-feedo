@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd /opt/app/feedo/
+cd /opt/app/
 
 echo ">>> Collecting static"
 python manage.py collectstatic --no-input
@@ -15,7 +15,7 @@ echo ">>> Starting uWSGI"
 
 uwsgi \
     --ini /install_resources/uwsgi.ini \
-    --wsgi-file /opt/app/feedo/wsgi.py
+    --wsgi-file /opt/app/wsgi.py
 
 child=$!
 wait "$child"

@@ -73,11 +73,11 @@ class BaseConfiguration(Configuration):
 
     DATABASES = {
         'default': {
+            'ENGINE': os.getenv('FEEDO_DATABASE_ENGINE'),
             'NAME': os.getenv('FEEDO_DATABASE_NAME'),
-            'ENGINE': 'django.db.backends.postgresql',
             'USER': os.getenv('FEEDO_DATABASE_USER'),
             'PASSWORD': os.getenv('FEEDO_DATABASE_PASSWORD'),
-            'HOST': os.getenv('FEEDO_DATABASE_PASSWORD')
+            'HOST': os.getenv('FEEDO_DATABASE_HOST')
         },
     }
     TIME_ZONE = os.getenv('FEEDO_TIME_ZONE', 'UTC')

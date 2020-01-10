@@ -1,0 +1,39 @@
+version: "3.3"
+
+services:
+  db:
+    image: postgres:10.0
+    networks:
+      feedo-network:
+    env_file: .env
+
+  application:
+    image: feedo:latest
+    build: ./feedo
+    env_file: .env
+    entrypoint: /install_resources/start.sh
+    networks:
+      feedo-network:
+        aliases:
+          - uwsgihost
+    depends_on:
+      - db
+
+  nginx:
+    image: nginx:latest
+    env_file: .env
+    networks:
+      feedo-network:
+    depends_on:
+      - application
+    ports:
+      - 80:80
+    volumes:
+      - ./feedo/install_resources/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+
+volumes:
+  db_volume:
+
+networks:
+  feedo-network:
+    driver: bridge

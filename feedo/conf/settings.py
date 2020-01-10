@@ -71,19 +71,13 @@ class BaseConfiguration(Configuration):
 
     WSGI_APPLICATION = 'wsgi.application'
 
-    # postgres =  # create user feedo with password '1234';
-    # CREATE
-    # ROLE
-    # postgres =  # create database feedo;
-    # CREATE
-    # DATABASE
-    # postgres =  # GRANT ALL PRIVILEGES ON DATABASE "feedo" to feedo
     DATABASES = {
         'default': {
             'NAME': os.getenv('FEEDO_DATABASE_NAME'),
             'ENGINE': 'django.db.backends.postgresql',
             'USER': os.getenv('FEEDO_DATABASE_USER'),
-            'PASSWORD': os.getenv('FEEDO_DATABASE_PASSWORD')
+            'PASSWORD': os.getenv('FEEDO_DATABASE_PASSWORD'),
+            'HOST': os.getenv('FEEDO_DATABASE_PASSWORD')
         },
     }
     TIME_ZONE = os.getenv('FEEDO_TIME_ZONE', 'UTC')

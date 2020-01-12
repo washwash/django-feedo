@@ -3,6 +3,9 @@
 {% block body %}
 <div>
   Feed - {{ object.feed.source }}
+  {% if not is_subscription_active(object) %}
+    Inactive, seems like the feed is broken. You can try to update manually.
+  {% endif %}
   <a href="{{ reverse('subscription:subscription_update_feed_view', kwargs={'pk': object.pk}) }}">
     Update feed
   </a>

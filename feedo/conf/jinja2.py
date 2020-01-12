@@ -1,6 +1,7 @@
+from jinja2 import Environment
+
 from django.urls import reverse
 from django.utils.timezone import template_localtime
-from jinja2 import Environment
 
 from applications.base.jinja_register import registered_jinja_functions
 

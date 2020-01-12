@@ -1,8 +1,9 @@
 import uuid
 
+from django.db import models
+
 from applications.base.model_mixins import UserTenantModel
 from applications.feed.models import Feed, Item
-from django.db import models
 
 
 class Subscription(UserTenantModel, models.Model):

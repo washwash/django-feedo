@@ -1,6 +1,6 @@
-from django.db import migrations, models
-import django.db.models.deletion
 import uuid
+import django.db.models.deletion
+from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
@@ -17,6 +17,7 @@ class Migration(migrations.Migration):
                 ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
                 ('source', models.URLField()),
                 ('updated_at', models.DateTimeField(null=True)),
+                ('fail_count', models.PositiveIntegerField(default=0)),
             ],
         ),
         migrations.CreateModel(

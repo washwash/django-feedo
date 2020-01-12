@@ -64,6 +64,6 @@ urlpatterns = [
     path(
         'posts/new/',
         post_list_new,
-        name='post_list_new_view'
+        name='post_new_view'
     )
 ]

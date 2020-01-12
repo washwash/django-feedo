@@ -51,6 +51,15 @@ services:
     depends_on:
       - rabbit
 
+  test:
+    image: feedo:latest
+    networks:
+      feedo-network:
+    env_file: .env
+    entrypoint: /install_resources/run_tests.sh
+    depends_on:
+      - db
+
 volumes:
   db_volume:
 

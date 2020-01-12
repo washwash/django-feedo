@@ -14,6 +14,9 @@ class Feed(models.Model):
     updated_at = models.DateTimeField(
         null=True
     )
+    fail_count = models.PositiveIntegerField(
+        default=0
+    )
 
 
 class Item(models.Model):

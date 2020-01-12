@@ -1,6 +1,6 @@
-from pathlib import Path
-
 import os
+
+from pathlib import Path
 from configurations import Configuration
 
 
@@ -80,9 +80,9 @@ class BaseConfiguration(Configuration):
             'HOST': os.getenv('FEEDO_DATABASE_HOST')
         },
     }
-    TIME_ZONE = os.getenv('FEEDO_TIME_ZONE', 'UTC')
-    USE_TZ = True
     ROOT_URLCONF = 'conf.urls'
+    USE_TZ = True
+    TIME_ZONE = os.getenv('FEEDO_TIME_ZONE', 'UTC')
 
     AUTH_USER_MODEL = 'auth.User'
     LOGIN_URL = 'index:index'
@@ -93,6 +93,8 @@ class BaseConfiguration(Configuration):
         'authentication:sign_up',
         'index:index',
     )
+
+    FEED_MAXIMUM_TRIES_COUNT = os.getenv('FEEDO_FEED_MAXIMUM_TRIES_COUNT', 5)
 
 
 class Dev(BaseConfiguration):

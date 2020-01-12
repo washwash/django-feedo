@@ -6,6 +6,9 @@
     Subs
     {% for sub in object_list %}
       <div>
+      {% if not is_subscription_active(sub) %}
+        <p>Feed inactive</p>
+      {% endif %}
       <a href="{{ reverse('subscription:subscription_detail_view', kwargs={'pk': sub.pk}) }}">{{ sub.feed.source }}</a>
       <a href="{{ reverse('subscription:subscription_delete_view', kwargs={'pk': sub.pk}) }}">Delete</a>
 

@@ -1,24 +1,22 @@
 from django.utils import timezone
 
-from applications.feed.service import update_feed
 from applications.subscription.models import Post, Subscription
+
+
+def get_subscriptions_for_update():
+    return Subscription.objects.all()
 
 
 def update_subscriptions(subscriptions):
     if not isinstance(subscriptions, type(Subscription.objects)):
         subscriptions = Subscription.objects.filter(
             pk__in=[s.pk for s in subscriptions]
-        ).select_related('feed')
-
-    for feed in set(s.feed for s in subscriptions):
-        update_feed(feed)
+        )
 
     for subscription in subscriptions:
         bind_new_posts(subscription)
 
-    subscriptions.update(
-        updated_at=timezone.now()
-    )
+    subscriptions.update(updated_at=timezone.now())
 
 
 def bind_new_posts(subscription):

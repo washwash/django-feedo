@@ -1,16 +1,5 @@
 from copy import copy
 
-from applications.authentication.filters import UserTenantFilterBackend
-from applications.base.views_mixins import FilterBackendViewMixin
-from applications.subscription.forms import (
-    SubscriptionCreationForm,
-    PostUpdateForm
-)
-from applications.subscription.models import Subscription, Post
-from applications.subscription.service import (
-    update_subscriptions,
-    mark_as_read,
-    bind_new_posts)
 from django.shortcuts import redirect
 from django.urls import reverse
 from django.views.generic import (
@@ -19,6 +8,20 @@ from django.views.generic import (
     DetailView,
     UpdateView,
     DeleteView
+)
+
+from applications.authentication.filters import UserTenantFilterBackend
+from applications.base.views_mixins import FilterBackendViewMixin
+from applications.feed.service import update_feeds
+from applications.subscription.forms import (
+    SubscriptionCreationForm,
+    PostUpdateForm
+)
+from applications.subscription.models import Subscription, Post
+from applications.subscription.service import (
+    update_subscriptions,
+    mark_as_read,
+    bind_new_posts
 )
 
 
@@ -54,6 +57,7 @@ class SubscriptionsUpdateFeedView(SubscriptionsDetailView):
     def get(self, request, *args, **kwargs):
         self.object = self.get_object()
 
+        update_feeds([self.object.feed, ])
         update_subscriptions([self.object, ])
         self.object.refresh_from_db()
 

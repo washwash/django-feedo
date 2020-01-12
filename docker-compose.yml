@@ -5,12 +5,12 @@ services:
     image: postgres:10.0
     networks:
       feedo-network:
-    env_file: .env
+    env_file: feedoenv.conf
 
   application:
     image: feedo
     build: ./feedo
-    env_file: .env
+    env_file: feedoenv.conf
     entrypoint: /install_resources/start.sh
     networks:
       feedo-network:
@@ -21,7 +21,7 @@ services:
 
   nginx:
     image: nginx
-    env_file: .env
+    env_file: feedoenv.conf
     networks:
       feedo-network:
     depends_on:
@@ -37,7 +37,7 @@ services:
       feedo-network:
         aliases:
           - rabbit
-    env_file: .env
+    env_file: feedoenv.conf
     ports:
       - 5672:5672
       - 15672:15672
@@ -46,7 +46,7 @@ services:
     image: feedo:latest
     networks:
       feedo-network:
-    env_file: .env
+    env_file: feedoenv.conf
     entrypoint: /install_resources/celery.sh
     depends_on:
       - rabbit
@@ -55,7 +55,7 @@ services:
     image: feedo:latest
     networks:
       feedo-network:
-    env_file: .env
+    env_file: feedoenv.conf
     entrypoint: /install_resources/run_tests.sh
     depends_on:
       - db

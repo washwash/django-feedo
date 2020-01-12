@@ -10,7 +10,9 @@
       Have an account? Sign in!
       <form action="{{ reverse('authentication:sign_in') }}" method="post">
           {{ csrf_input }}
+          Username
           <input type="text" name="username" title="Username">
+          Password
           <input type="password" name="password" title="Password">
           <input type="submit" value="Sign In">
       </form>
@@ -20,8 +22,11 @@
       Sign up now!
       <form action="{{ reverse('authentication:sign_up') }}" method="post">
         {{ csrf_input }}
+        Username
         <input type="text" name="username" title="Username">
+        Password
         <input type="password" name="password1" title="Password">
+        Password confirmation
         <input type="password" name="password2" title="Password confirmation">
         <input type="submit" value="Sign Up">
       </form>

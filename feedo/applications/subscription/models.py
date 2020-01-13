@@ -16,9 +16,6 @@ class Subscription(UserTenantModel, models.Model):
         Feed,
         on_delete=models.PROTECT
     )
-    is_active = models.BooleanField(
-        default=True
-    )
     updated_at = models.DateTimeField(
         null=True
     )

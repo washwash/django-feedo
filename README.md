@@ -51,6 +51,7 @@ Then, goes through all Subscriptions and tries to create new Users' Posts.
 Easy peasy lemon squeezy, but here is the thing - Docker and Docker Compose
 should be installed. Pls, check the [Starred](#starred) section.
 
+Make sure your OS has not active postgresql, nginx and rabbit services.
 Okay, now run three commands:
 ```
 git clone https://github.com/washwash/django-feedo.git

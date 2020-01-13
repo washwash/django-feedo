@@ -9,14 +9,15 @@ Of course, it should be done as beautiful SPA with elegant REST API with Django 
 and probably I will rewrite it in this way someday.
 
 So, we have three main parts:
-* [Feeds](#feed)
-* [Subscriptions](#subscription)
+* [Feed](#feed)
+* [Subscription](#subscription)
 * [Async operations](#async-operations)
+
 
 ### Feed
 Feed is bound with RSS sources and their items or entries.
 Each Feed stores information about `source`, `date of updating` and `fail counts`.
-Feeds are `updated automatically`, and if try has been unsuccessful, fail count is increased.
+Feeds are `updated automatically`, and if an attempt has been unsuccessful, fail counter is increased.
 After some failed tries Feddo `stops to update` that Feed.
 
 All RSS entries are stored in Item model. Item represents real world RSS item
@@ -30,10 +31,11 @@ User read the feeds through the subscriptions.
 For example, `https://rss.nytimes.com/services/xml/rss/nyt/Technology.xml`
 Everyone loves technology, right? 1000000 Users are able to subscribe on NYT and
 that means there are only 1 Feed (NYT RSS) and 1000000 Subs for the different Users!
-User can delete Sub, but not Feed. Also, we can use Subscription model more widely.
+User can delete Sub, but not Feed. 
+Also, we can use Subscription model more widely and don't touch Feed.
 
 Posts allow User to read the news. User can leave a `comment` or mark Post as `favourite`.
-User can see All, `New` and Favourites posts in the different lists.
+User can see All, `New` and Favourites posts in different lists.
 Post gets a `read` mark if user goes to the post page in Feedo (detail view).
 If User adds a subscription to existing feed, all old posts will appear immediately
 and will be marked as read.

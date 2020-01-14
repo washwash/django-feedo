@@ -8,9 +8,6 @@ python manage.py collectstatic --no-input
 echo ">>> Applying migrations"
 python manage.py migrate --no-input
 
-echo ">>> Applying migrations"
-python manage.py migrate --no-input
-
 echo ">>> Starting uWSGI"
 
 uwsgi \
